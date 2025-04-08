@@ -1,4 +1,6 @@
 # config/database.yml
 
 production:
+  adapter: postgresql
   url: <%= ENV["DATABASE_URL"] %>
+
