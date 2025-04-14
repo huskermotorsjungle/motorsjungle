@@ -27,20 +27,9 @@
     <button class="category-btn">Harvesters</button>
     <button class="category-btn">Lifts</button>
   </div>
-<%= form_with url: "/leads", method: "post", local: true, model: Lead.new do |form| %>
-  <div>
-    <%= form.label :email, "Enter your email to be notified" %><br>
-    <%= form.email_field :email, required: true %>
-  </div>
-  <div>
-    <%= form.hidden_field :category, value: "General Interest" %>
-  </div>
-  <div>
-    <%= form.submit "Notify Me" %>
-  </div>
-<% end %>
 
 
+<script async data-uid="3303710dfa" src="https://motorsjungle.kit.com/3303710dfa/index.js"></script>
 </body>
 </html>
 
