@@ -1,16 +1,7 @@
 <h1>Welcome to The Car Jungle</h1>
-<p>Be the first to hear when we launch!</p>
+<p>We're building a better way to buy and sell vehicles by-owner.</p>
+<p>Be the first to know when we launch — enter your email below!</p>
 
-<%= form_with url: "/leads", method: "post", local: true, model: Lead.new do |form| %>
-  <div>
-    <%= form.label :email, "Enter your email to be notified" %><br>
-    <%= form.email_field :email, required: true %>
-  </div>
-  <div>
-    <%= form.hidden_field :category, value: "Cars/SUVs/Pickups/Minivans" %>
-  </div>
-  <div>
-    <%= form.submit "Notify Me" %>
-  </div>
-<% end %>
+<script async data-uid="359e3cc8ab" src="https://motorsjungle.kit.com/359e3cc8ab/index.js"></script>
+
 
