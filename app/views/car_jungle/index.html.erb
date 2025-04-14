@@ -1,0 +1,19 @@
+<h1>Welcome to TheCarJungle</h1>
+<p>Be the first to know when we launch! Sign up below:</p>
+
+<%= form_with url: "/leads", method: "post", local: true, model: Lead.new do |form| %>
+  <div>
+    <%= form.label :email, "Enter your email to be notified" %><br>
+    <%= form.email_field :email, required: true %>
+  </div>
+  <div>
+    <%= form.hidden_field :category, value: "Cars/SUVs/Pickups/Minivans" %>
+  </div>
+  <div>
+    <%= form.submit "Notify Me" %>
+  </div>
+<% end %>
+
+
+
+

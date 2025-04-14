@@ -1,0 +1,16 @@
+<h1>Welcome to The Car Jungle</h1>
+<p>Be the first to hear when we launch!</p>
+
+<%= form_with url: "/leads", method: "post", local: true, model: Lead.new do |form| %>
+  <div>
+    <%= form.label :email, "Enter your email to be notified" %><br>
+    <%= form.email_field :email, required: true %>
+  </div>
+  <div>
+    <%= form.hidden_field :category, value: "Cars/SUVs/Pickups/Minivans" %>
+  </div>
+  <div>
+    <%= form.submit "Notify Me" %>
+  </div>
+<% end %>
+

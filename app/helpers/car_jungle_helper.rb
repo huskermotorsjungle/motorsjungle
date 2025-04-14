@@ -1,0 +1,2 @@
+module CarJungleHelper
+end
