@@ -24,9 +24,11 @@
     <%= listing.price %>
   </p>
 
+ <% if listing.photo.attached? %>
   <p>
-    <strong>Photo:</strong>
-    <%= listing.photo %>
+    <strong>Photo:</strong><br>
+    <%= image_tag listing.photo.variant(resize_to_limit: [600, 400]) %>
   </p>
+<% end %>
 
 </div>
