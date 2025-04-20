@@ -1,4 +1,5 @@
 class ListingsController < ApplicationController
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_listing, only: %i[ show edit update destroy ]
 
   # GET /listings or /listings.json
@@ -57,7 +58,14 @@ class ListingsController < ApplicationController
     end
   end
 
-  private
+    private
+def authenticate_admin!
+  authenticate_or_request_with_http_basic("Admin Area") do |user, pass|
+    user == ENV["ADMIN_USER"] && pass == ENV["ADMIN_PASS"]
+  end
+end
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_listing
       @listing = Listing.find(params[:id])
@@ -68,3 +76,4 @@ class ListingsController < ApplicationController
       params.require(:listing).permit(:year, :make, :model, :odometer, :price, :photo)
     end
 end
+	
