@@ -24,6 +24,16 @@
     <%= listing.price %>
   </p>
 
+  <p>
+    <strong>Location:</strong>
+    <%= listing.location %>
+  </p>
+
+<p>
+  This <%= listing.year %> <%= listing.make %> <%= listing.model %> for sale by owner is located in <%= listing.location %>.
+</p>
+
+
  <% if listing.photo.attached? %>
   <p>
     <strong>Photo:</strong><br>
