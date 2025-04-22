@@ -35,6 +35,12 @@
     <%= form.number_field :price, step: 0.01 %>
   </div>
 
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location, placeholder: "City, State or ZIP" %>
+  </div>
+
+
   <div>
     <%= form.label :photo, style: "display: block" %>
     <%= form.file_field :photo %>
