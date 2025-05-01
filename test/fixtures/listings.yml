@@ -6,7 +6,7 @@ one:
   model: MyString
   odometer: 1
   price: 9.99
-  photo: MyString
+  
 
 two:
   year: 1
@@ -14,4 +14,4 @@ two:
   model: MyString
   odometer: 1
   price: 9.99
-  photo: MyString
+  
