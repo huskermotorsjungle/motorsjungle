@@ -11,13 +11,23 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_listing_url
+    get new_listing_url, headers: auth_headers
     assert_response :success
   end
 
   test "should create listing" do
     assert_difference("Listing.count") do
-      post listings_url, params: { listing: { make: @listing.make, model: @listing.model, odometer: @listing.odometer, photo: @listing.photo, price: @listing.price, year: @listing.year } }
+      post listings_url,
+           params: {
+             listing: {
+               year:      @listing.year,
+               make:      @listing.make,
+               model:     @listing.model,
+               odometer:  @listing.odometer,
+               price:     @listing.price
+             }
+           },
+           headers: auth_headers
     end
 
     assert_redirected_to listing_url(Listing.last)
@@ -29,18 +39,29 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get edit" do
-    get edit_listing_url(@listing)
+    get edit_listing_url(@listing), headers: auth_headers
     assert_response :success
   end
 
   test "should update listing" do
-    patch listing_url(@listing), params: { listing: { make: @listing.make, model: @listing.model, odometer: @listing.odometer, photo: @listing.photo, price: @listing.price, year: @listing.year } }
+    patch listing_url(@listing),
+          params: {
+            listing: {
+              year:      @listing.year,
+              make:      @listing.make,
+              model:     @listing.model,
+              odometer:  @listing.odometer,
+              price:     @listing.price
+            }
+          },
+          headers: auth_headers
+
     assert_redirected_to listing_url(@listing)
   end
 
   test "should destroy listing" do
     assert_difference("Listing.count", -1) do
-      delete listing_url(@listing)
+      delete listing_url(@listing), headers: auth_headers
     end
 
     assert_redirected_to listings_url
