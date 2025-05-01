@@ -11,5 +11,15 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+
+    # helper to send HTTP Basic credentials in controller tests
+    def auth_headers
+      user = ENV.fetch("ADMIN_USER", "admin")
+      pass = ENV.fetch("ADMIN_PASS", "secret")
+      {
+        "HTTP_AUTHORIZATION" =>
+          ActionController::HttpAuthentication::Basic.encode_credentials(user, pass)
+      }
+    end
   end
 end
