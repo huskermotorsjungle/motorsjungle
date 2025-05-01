@@ -72,4 +72,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
+group :development, :test do
+  gem "rubocop", require: false
+end
+
 gem 'image_processing', '~> 1.2'
