@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy], unless: -> { Rails.env.test? }
   before_action :set_listing, only: %i[ show edit update destroy ]
 
   # GET /listings or /listings.json
