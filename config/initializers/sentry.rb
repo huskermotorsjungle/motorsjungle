@@ -1,11 +1,15 @@
-# config/initializers/sentry.rb
+# frozen_string_literal: true
+
 Sentry.init do |config|
-  # Use the DSN from your environment
+  # pull your DSN from the environment
   config.dsn = ENV.fetch("SENTRY_DSN")
 
-  # Log Rails breadcrumbs
-  config.breadcrumbs_logger = %i[active_support_logger http_logger]
+  # enable both Rails and HTTP breadcrumbs
+  config.breadcrumbs_logger = [:active_support_logger, :http_logger]
 
-  # Adjust sample rate as needed (0.0–1.0)
-  config.traces_sample_rate = 0.5
+  # include PII (e.g. user IP, headers) in events
+  config.send_default_pii = true
+
+  # adjust sampling if you want performance tracing
+  # config.traces_sample_rate = 1.0
 end
