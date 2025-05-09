@@ -8,27 +8,29 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= Sentry.get_trace_propagation_meta.html_safe %>
+    <% unless Rails.env.test? %>
+      <%= javascript_importmap_tags %>
+    <% end %>
   </head>
 
-  <body>
-    <header>
-      <nav>
-        <% if user_signed_in? %>
-          <span>
-            Logged in as <strong><%= current_user.email %></strong>
-            (<%= current_user.account_type %>)
-          </span>
-          |
-          <%= link_to "Edit Profile", edit_user_registration_path %>
-          |
-          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to "Sign up", new_user_registration_path %>
-          |
-          <%= link_to "Login", new_user_session_path %>
-        <% end %>
-      </nav>
-    </header>
+<body>
+  <header>
+    <nav>
+      <% if user_signed_in? %>
+        Logged in as <strong><%= current_user.email %></strong> (
+        <%= current_user.account_type %>)
+        |
+        <%= link_to "Edit Profile", edit_user_registration_path %>
+        |
+        <%= link_to "Logout", destroy_user_session_path,
+            method: :delete, data: { turbo_method: :delete } %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path %>
+        |
+        <%= link_to "Login", new_user_session_path %>
+      <% end %>
+    </nav>
+  </header>
 
     <main>
       <% flash.each do |type, message| %>
