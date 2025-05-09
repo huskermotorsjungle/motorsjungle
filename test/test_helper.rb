@@ -1,3 +1,5 @@
+# test/test_helper.rb
+
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
@@ -12,9 +14,17 @@ module ActiveSupport
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 
-    # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
+    # Setup all fixtures in test/fixtures/*.yml for all tests
     fixtures :all
 
-    # Add more helper methods to be used by all tests here...
+    # Enable Basic Auth helper for Devise in tests
+    def auth_headers
+      token = ActionController::HttpAuthentication::Basic
+        .encode_credentials(
+          ENV.fetch("ADMIN_USER"),
+          ENV.fetch("ADMIN_PASS")
+        )
+      { "Authorization" => token }
+    end
   end
 end
