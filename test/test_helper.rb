@@ -4,6 +4,9 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
+# Make Devise’s view helpers available in view rendering
+ActionView::Base.send(:include, Devise::Controllers::Helpers)
+
 # Make Devise’s test helpers available in IntegrationTest
 class ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
