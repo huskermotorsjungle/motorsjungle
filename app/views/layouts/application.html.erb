@@ -8,7 +8,9 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= Sentry.get_trace_propagation_meta.html_safe %>
-    <%= javascript_importmap_tags %>
+    <% unless Rails.env.test? %>
+      <%= javascript_importmap_tags %>
+    <% end %>
   </head>
 
 <body>
