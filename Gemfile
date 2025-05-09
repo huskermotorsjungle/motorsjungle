@@ -31,6 +31,9 @@ gem "jbuilder"
 # adding the mini magick gem per openai suggestion
 gem "mini_magick"
 
+# Authentication
+gem 'devise'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

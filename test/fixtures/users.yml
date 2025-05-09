@@ -1,0 +1,11 @@
+# test/fixtures/users.yml
+
+one:
+  email: user_one@example.com
+  account_type: Private Seller
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password1') %>
+
+two:
+  email: user_two@example.com
+  account_type: Private Seller
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password2') %>
