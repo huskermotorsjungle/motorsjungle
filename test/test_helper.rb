@@ -4,12 +4,10 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
-# Include Devise view helpers in templates
-ActionView::Base.send(:include, Devise::Controllers::Helpers)
-
-# Make Devise’s test helpers available in IntegrationTest
+# Include Devise’s helpers in integration tests so layouts can call user_signed_in?
 class ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+  include Devise::Controllers::Helpers
 end
 
 module ActiveSupport
@@ -20,13 +18,12 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests
     fixtures :all
 
-    # Enable Basic Auth helper for Devise in tests
+    # Helper for Basic Auth in request specs
     def auth_headers
-      token = ActionController::HttpAuthentication::Basic
-        .encode_credentials(
-          ENV.fetch("ADMIN_USER"),
-          ENV.fetch("ADMIN_PASS")
-        )
+      token = ActionController::HttpAuthentication::Basic.encode_credentials(
+        ENV.fetch("ADMIN_USER"),
+        ENV.fetch("ADMIN_PASS")
+      )
       { "Authorization" => token }
     end
   end
